@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-An-Android!</title>
+    <link rel="shortcut icon" href="svg/logo.svg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <a href="#game" id="click" onclick="removal()">
+                <li class="nav-item">
+                    <svg id="point" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#ffffff">
+                        <path d="M0 0h24v24H0V0z" fill="none"/>
+                        <path d="M6.67 11H4v2h2.67l1-1zM13 6.67V4h-2v2.67l1 1zm-2 10.66V20h2v-2.67l-1-1zM16.33 12l1 1H20v-2h-2.67z" opacity=".1"/>
+                        <path d="M9 16.5V22h6v-5.5l-3-3-3 3zm4 3.5h-2v-2.67l1-1 1 1V20zm2-12.5V2H9v5.5l3 3 3-3zM11 4h2v2.67l-1 1-1-1V4zM7.5 9H2v6h5.5l3-3-3-3zm-.83 4H4v-2h2.67l1 1-1 1zm9.83-4l-3 3 3 3H22V9h-5.5zm3.5 4h-2.67l-1-1 1-1H20v2z"/></svg>
+                    <span class="icon-text">Game</span>
+                </li>
+            </a>
+            <a href="#tweaks" onclick="removal()">
+                <li class="nav-item not-game">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#ffffff">
+                        <path d="M0 0h24v24H0V0z" fill="none"/>
+                        <path d="M3 5h10v2H3zm4 6H3v2h4v2h2V9H7zm6 4h-2v6h2v-2h8v-2h-8zM3 17h6v2H3zm8-6h10v2H11zm6-8h-2v6h2V7h4V5h-4z"/></svg>
+                    <span class="icon-text">Tweak</span>
+                </li>
+            </a>
+            <a href="#stats" onclick="removal()">
+                <li class="nav-item not-game">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#ffffff">
+                        <path d="M0 0h24v24H0V0z" fill="none"/>
+                        <path d="M13 4H6v16h12V9h-5V4zm3 14H8v-2h8v2zm0-6v2H8v-2h8z" opacity=".1"/>
+                        <path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+                    <span class="icon-text">Stats</span>
+
+                </li>
+            </a>
+            <a href="#about" onclick="sign()">
+                <li class="nav-item not-game">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#ffffff">
+                         <path d="M0 0h24v24H0V0z" fill="none"/>
+                         <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm1 14h-2v-2h2v2zm0-3h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z" opacity=".1"/>
+                         <path d="M11 16h2v2h-2zm1-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+                    <span class="icon-text">About</span>
+                </li>
+            </a>
+        </ul>
+    </nav>
+    <div id="overlay">
+        <div class="overlay-text">
+            <div class="ugh">
+                <p>Greetings Stranger,</p>
+                <p>An evil Arab errr... I mean Android has taken refuge in our bins! It's up to you to make it pay... dearly.</p>
+                <a href="#game">
+                    <p style="text-align: center" class="off" onclick="off()">Got It!</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <section id="game">
+            <header>
+                <h1>Whack-An-AnDroid!</h1>
+                <h2>Score: <span class="score">0</span></h2>
+            </header>
+            <div class="game">
+                <div class="bin bin1">
+                    <div class="android"></div>
+                    <h3>Whacked!</h3>
+                </div>
+                <div class="bin bin2">
+                    <div class="android"></div>
+                    <h3>Whacked!</h3>
+                </div>
+                <div class="bin bin3">
+                    <div class="android"></div>
+                    <h3>Whacked!</h3>
+                </div>
+                <div class="bin bin4">
+                    <div class="android"></div>
+                    <h3>Whacked!</h3>
+                </div>
+                <div class="bin bin5">
+                    <div class="android"></div>
+                    <h3>Whacked!</h3>
+                </div>
+                <div class="bin bin6">
+                    <div class="android"></div>
+                    <h3>Whacked!</h3>
+                </div>
+            </div>
+            <div class="btn">
+                <h1 class="start" onclick="startGame()">Start whacking!</h1>
+            </div>
+        </section>
+        <section id="tweaks">
+            <div class="tweaks">
+                <div class="time">
+                    <h3 class="enjoy">Duration: I don't enjoy playing</h3>
+                    <input id="two-one-five" type="range" value="45000" min="45000" step="45000" max="135000">
+                    <div class="tickmarks">
+                        <p>|</p>
+                        <p>|</p>
+                        <p>|</p>
+                    </div>
+                    <div class="tik">
+                        <p>00:45</p>
+                        <p>01:30</p>
+                        <p>02:15</p>
+                    </div>
+                </div>
+            </div>
+            <div class="peep">
+                <h3 class="peeps">Speed: I suck</h3>
+                <input id="xxx" type="range" value="1500" min="500" step="500" max="1500">
+                <div class="tickmarks">
+                    <p>|</p>
+                    <p>|</p>
+                    <p>|</p>
+                </div>
+                <div class="tik">
+                    <p>1x</p>
+                    <p>2x</p>
+                    <p>3x</p>
+                </div>
+            </div>
+            <div class="music">
+                <div class="img" onclick="music()">
+                    <img src="svg/on.svg" width="45px" height="45px">
+                </div>
+            </div>
+        </section>
+        <section id="stats">
+            <div class="stats">
+                <table>
+                    <caption>Stats for nerds</caption>
+                    <tr>
+                        <td style="border: none;"></td>
+                        <th scope="col" class="field-row">00:45</th>
+                        <th scope="col" class="field-row">01:30</th>
+                        <th scope="col" class="field-row">02:15</th>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="field-row row">1x</th>
+                        <td class="df1s1">0</td>
+                        <td class="df2s1">0</td>
+                        <td class="df3s1">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="field-row row">2x</th>
+                        <td class="df1s2">0</td>
+                        <td class="df2s2">0</td>
+                        <td class="df3s2">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="field-row row">3x</th>
+                        <td class="df1s3">0</td>
+                        <td class="df2s3">0</td>
+                        <td class="df3s3">0</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        <section id="about">
+            <div class="about">
+                <div class="pirate">
+                    <h1 style="font-size: 5.5rem;">About? Nothing</h1>
+                    <p>My mind is gone, third time is the charm... Oops! Hahahhah... I'm not sure what to write in this section... hmm... oh i know! fun fact: the music was licensed to me by pirates from cairo. moving on, here's a cheatcode</p>
+                    <p>Cheatcode: ******</p>
+                    <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="one" class='sign' d="M91 162.486C113.318 220.936 131.123 268.711 138.014 286.95C142.243 298.142 153.148 328.626 155.373 316.85C156.809 309.248 157.211 306.78 157.983 301.873C161.507 279.488 158.626 296.547 162.682 270.783C166.206 248.398 169.748 207.975 197.699 146.423C256.432 17.0892 379.409 107.714 395.655 158.273C404.68 186.362 436.418 286.153 346.517 377.365C256.616 468.576 165.709 391.642 155.373 347.872" stroke="#ffffff" stroke-width="15" stroke-linecap="round"/>
+                        <path id="two" class='sign' d="M225 317.508C227.251 286.776 229.502 256.044 231.003 225.311C232.017 204.558 233.255 185.54 234.396 164.843C234.542 164.168 234.78 158.215 236.689 160.352C238.908 162.835 241.406 168.245 242.51 170.542C248.143 182.275 252.999 194.379 257.913 206.41C269.365 234.444 277.928 263.406 290.837 290.869C293.94 297.469 297.209 303.982 300.479 310.502C300.602 310.746 305.737 320.235 306.044 317.508C309.046 290.869 312.101 263.275 313.549 238.87C315.21 210.849 317.301 181.021 318.801 153" stroke="#ffffff" stroke-width="15" stroke-linecap="round"/>
+                        <path id="three" class='sign' d="M73.0367 377.534C131.313 370.322 189.59 363.109 247.867 355.896C322.04 346.716 396.882 338.206 470.825 328" stroke="#ffffff" stroke-width="15" stroke-linecap="round"/>
+                        <path id="four" class='sign' d="M186.832 315C186.573 315.777 185.46 319.979 186.322 320.6C187.17 321.211 188.334 321.145 189.127 320.244C189.794 319.488 190.249 318.481 189.852 317.041C189.272 314.933 188.074 315.214 186.953 315.214" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+                        </svg>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="cheat">
+        <div class="cheat-text">
+            <div style="text-align: left" class="woo">
+                <p>Greetings StrangeAff(?),</p>
+                <p>Your highscores are now set to 999! Also you can type the same in my previous websites... once!</p>
+                <a href="#game">
+                    <p style="text-align: center" class="off" onclick="back()">Okay</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <audio class="misirlou" src="waves/misirlou.mp3"></audio>
+    <audio class="snare" src="waves/whacked.wav"></audio>
+    <script src="script.js"></script>
+</body>
+
+</html>
