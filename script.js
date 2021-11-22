@@ -284,7 +284,7 @@ function removal() {
 }
 
 // Cheats
-
+let activate = 0;
 // a key map of allowed keys
 var allowedKeys = {
     65: 'A',
@@ -295,7 +295,7 @@ var allowedKeys = {
 };
 
 // the sequence
-var code = ['A', 'F', 'R', 'E', 'E', 'N', 'A', 'F', 'R', 'E', 'E', 'N', 'A', 'F', 'R', 'E', 'E', 'N'];
+var code = ['A', 'F', 'R', 'E', 'E', 'N'];
 
 // a variable to remember the 'position' the user has reached so far.
 var position = 0;
@@ -315,7 +315,11 @@ document.addEventListener('keydown', function(e) {
 
         // if the last key is reached,
         if (position == code.length) {
-            PlaySong();
+            activate++;
+            if (activate === 3) {
+                PlaySong();
+                activate = 0;
+            }
             position = 0;
         }
     } else {
