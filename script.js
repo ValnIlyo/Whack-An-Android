@@ -14,6 +14,7 @@ let tout = 45000;
 let velocity = 1500;
 let x = 2000;
 let bool = 1;
+let arr = ['df1s1', 'df1s2', 'df1s3', 'df2s1', 'df2s2', 'df2s3', 'df3s1', 'df3s2', 'df3s3']
 
 // Set speed var
 xxx.addEventListener('change', frustrated);
@@ -21,32 +22,31 @@ xxx.addEventListener('mousechange', frustrated);
 
 function frustrated() {
     velocity = parseInt(xxx.value);
-    if (velocity === 1500) {
-        document.querySelector('.peeps').innerHTML = "Speed: I suck at this";
-        x = 2000;
-    } else if (velocity === 1000) {
-        document.querySelector('.peeps').innerHTML = "Speed: I still suck";
-        x = 1500;
-    } else if (velocity === 500) {
-        document.querySelector('.peeps').innerHTML = "Speed: Bring it on!";
-        x = 1000;
+    x = velocity + 500;
+    let vectors = [1500, 1000, 500]
+    let taunts = ["Speed: I suck at this", "Speed: I still suck", "Speed: Bring it on!"]
+    for (let i = 0; i < vectors.length; i++) {
+        if (vectors[i] === velocity) {
+            document.querySelector('.peeps').innerHTML = taunts[i];
+        }
     }
 }
-// Set duration var
 
+// Set duration var
 twoOneFive.addEventListener('change', parse);
 twoOneFive.addEventListener('mousechange', parse);
 
 function parse() {
     tout = parseInt(twoOneFive.value);
-    if (tout === 45000) {
-        document.querySelector('.enjoy').innerHTML = "Duration: I don't enjoy playing";
-    } else if (tout === 90000) {
-        document.querySelector('.enjoy').innerHTML = "Duration: I am sadistic";
-    } else if (tout === 135000) {
-        document.querySelector('.enjoy').innerHTML = "Duration: I love Misirlou!";
+    let touts = [45000, 90000, 135000]
+    let desc = ["Duration: I don't enjoy playing", "Duration: I am sadistic", "Duration: I love Misirlou!"]
+    for (let i = 0; i < touts.length; i++) {
+        if (touts[i] === tout) {
+            document.querySelector('.enjoy').innerHTML = desc[i];
+        }
     }
 }
+
 // Set the random place where android will peep
 function randomBin(bins) {
     const idx = Math.floor(Math.random() * bins.length);
@@ -73,6 +73,7 @@ function peep() {
     }, time);
 }
 
+//End Game
 function stopit() {
     start = true;
     timeup = true
@@ -86,6 +87,7 @@ function stopit() {
     hscore();
     nerds();
 }
+
 // Start Game
 function startGame() {
     if (start != false) {
@@ -143,10 +145,12 @@ function hit(e) {
 }
 androids.forEach(android => android.addEventListener('click', hit));
 
+// Remove overlay
 function off() {
     document.getElementById("overlay").style.display = "none";
 }
 
+//Turn music  off
 function music() {
     if (bool === 1) {
         bool = 0;
@@ -158,117 +162,37 @@ function music() {
 }
 
 // Highscore
-const check1 = localStorage.getItem('df1s1');
-const check2 = localStorage.getItem('df1s2');
-const check3 = localStorage.getItem('df1s3');
-const check4 = localStorage.getItem('df2s1');
-const check5 = localStorage.getItem('df2s2');
-const check6 = localStorage.getItem('df2s3');
-const check7 = localStorage.getItem('df3s1');
-const check8 = localStorage.getItem('df3s2');
-const check9 = localStorage.getItem('df3s3');
-
-
 window.onload = function() {
     nerds();
     document.getElementById("overlay").style.display = "block";
-    if (check1 === null) {
-        localStorage.setItem('df1s1', 0);
-    }
-    if (check2 === null) {
-        localStorage.setItem('df1s2', 0);
-    }
-    if (check3 === null) {
-        localStorage.setItem('df1s3', 0);
-    }
-    if (check4 === null) {
-        localStorage.setItem('df2s1', 0);
-    }
-    if (check5 === null) {
-        localStorage.setItem('df2s2', 0);
-    }
-    if (check6 === null) {
-        localStorage.setItem('df2s3', 0);
-    }
-    if (check4 === null) {
-        localStorage.setItem('df3s1', 0);
-    }
-    if (check5 === null) {
-        localStorage.setItem('df3s2', 0);
-    }
-    if (check6 === null) {
-        localStorage.setItem('df3s3', 0);
+    for (let i = 0; i < arr.length; i++) {
+        if (localStorage.getItem(arr[i]) === null) {
+            localStorage.setItem(arr[i], 0);
+        }
     }
 }
 
+//Update Highscore
 function hscore() {
-    if (tout === 45000 && velocity === 1500) {
-        let tv = parseInt(localStorage.getItem('df1s1'));
-        if (tv < score) {
-            localStorage.removeItem('df1s1');
-            localStorage.setItem('df1s1', score);
-        }
-    } else if (tout === 45000 && velocity === 1000) {
-        let tv = parseInt(localStorage.getItem('df1s2'));
-        if (tv < score) {
-            localStorage.removeItem('df1s2');
-            localStorage.setItem('df1s2', score);
-        }
-    } else if (tout === 45000 && velocity === 500) {
-        let tv = parseInt(localStorage.getItem('df1s3'));
-        if (tv < score) {
-            localStorage.removeItem('df1s3');
-            localStorage.setItem('df1s3', score);
-        }
-    } else if (tout === 90000 && velocity === 1500) {
-        let tv = parseInt(localStorage.getItem('df2s1'));
-        if (tv < score) {
-            localStorage.removeItem('df2s1');
-            localStorage.setItem('df2s1', score);
-        }
-    } else if (tout === 90000 && velocity === 1000) {
-        let tv = parseInt(localStorage.getItem('df2s2'));
-        if (tv < score) {
-            localStorage.removeItem('df2s2');
-            localStorage.setItem('df2s2', score);
-        }
-    } else if (tout === 90000 && velocity === 500) {
-        let tv = parseInt(localStorage.getItem('df2s3'));
-        if (tv < score) {
-            localStorage.removeItem('df2s3');
-            localStorage.setItem('df2s3', score);
-        }
-    } else if (tout === 135000 && velocity === 1500) {
-        let tv = parseInt(localStorage.getItem('df3s1'));
-        if (tv < score) {
-            localStorage.removeItem('df3s1');
-            localStorage.setItem('df3s1', score);
-        }
-    } else if (tout === 135000 && velocity === 1000) {
-        let tv = parseInt(localStorage.getItem('df3s2'));
-        if (tv < score) {
-            localStorage.removeItem('df3s2');
-            localStorage.setItem('df3s2', score);
-        }
-    } else if (tout === 135000 && velocity === 500) {
-        let tv = parseInt(localStorage.getItem('df3s3'));
-        if (tv < score) {
-            localStorage.removeItem('df3s3');
-            localStorage.setItem('df3s3', score);
+    tove = tout + velocity
+    toves = [46500, 46000, 45500, 91500, 91000, 90500, 136500, 136000, 135500]
+    for (let i = 0; i < toves.length; i++) {
+        if (toves[i] === tove) {
+            let tv = parseInt(localStorage.getItem(arr[i]));
+            if (tv < score) {
+                localStorage.removeItem(arr[i]);
+                localStorage.setItem(arr[i], score);
+            }
         }
     }
 }
 
+// Display High Score
 function nerds() {
-    document.querySelector('.df1s1').innerHTML = parseInt(localStorage.getItem('df1s1'));
-    document.querySelector('.df1s2').innerHTML = parseInt(localStorage.getItem('df1s2'));
-    document.querySelector('.df1s3').innerHTML = parseInt(localStorage.getItem('df1s3'));
-    document.querySelector('.df2s1').innerHTML = parseInt(localStorage.getItem('df2s1'));
-    document.querySelector('.df2s2').innerHTML = parseInt(localStorage.getItem('df2s2'));
-    document.querySelector('.df2s3').innerHTML = parseInt(localStorage.getItem('df2s3'));
-    document.querySelector('.df3s1').innerHTML = parseInt(localStorage.getItem('df3s1'));
-    document.querySelector('.df3s2').innerHTML = parseInt(localStorage.getItem('df3s2'));
-    document.querySelector('.df3s3').innerHTML = parseInt(localStorage.getItem('df3s3'));
+    let dotnerd = ['.df1s1', '.df1s2', '.df1s3', '.df2s1', '.df2s2', '.df2s3', '.df3s1', '.df3s2', '.df3s3']
+    for (let i = 0; i < arr.length; i++) {
+        document.querySelector(dotnerd[i]).innerHTML = parseInt(localStorage.getItem(arr[i]));
+    }
 }
 
 // animation
@@ -286,13 +210,7 @@ function removal() {
 // Cheats
 let activate = 0;
 // a key map of allowed keys
-var allowedKeys = {
-    65: 'A',
-    70: 'F',
-    82: 'R',
-    69: 'E',
-    78: 'N'
-};
+var allowedKeys = { 65: 'A', 70: 'F', 82: 'R', 69: 'E', 78: 'N' };
 
 // the sequence
 var code = ['A', 'F', 'R', 'E', 'E', 'N'];
@@ -342,13 +260,7 @@ function back() {
 }
 
 function cheat() {
-    localStorage.setItem('df1s1', score);
-    localStorage.setItem('df1s2', score);
-    localStorage.setItem('df1s3', score);
-    localStorage.setItem('df2s1', score);
-    localStorage.setItem('df2s2', score);
-    localStorage.setItem('df2s3', score);
-    localStorage.setItem('df3s1', score);
-    localStorage.setItem('df3s2', score);
-    localStorage.setItem('df3s3', score);
+    for (let i = 0; i < arr.length; i++) {
+        localStorage.setItem(arr[i], score);
+    }
 }
